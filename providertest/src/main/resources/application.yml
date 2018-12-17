@@ -1,0 +1,37 @@
+server:
+    port: 8081
+spring:
+    application:
+        name: providertest
+    datasource:
+        type: com.alibaba.druid.pool.DruidDataSource
+        username: root
+        password: root
+        druid:
+            driver-class-name: com.mysql.jdbc.Driver
+            initialSize: 5
+            minIdle: 5
+            maxActive: 20
+            maxWait: 60000
+            timeBetweenEvictionRunsMillis: 60000
+            minEvictableIdleTimeMillis: 300000
+            validationQuery: SELECT 1 FROM DUAL
+            testWhileIdle: true
+            testOnBorrow: false
+            testOnReturn: false
+            poolPreparedStatements: true
+            maxPoolPreparedStatementPerConnectionSize: 20
+            filters: stat,wall,log4j
+            connectionProperties:
+                druid:
+                    stat:
+                        mergeSql: true
+                        slowSqlMillis : 5000
+            useGlobalDataSourceStat: true
+        url: jdbc:mysql://localhost:3306/boot?useSSL=true&characterEncoding=UTF-8
+eureka:
+    client:
+        service-url:
+            defaultZone: http://localhost:8088/eureka
+mybatis:
+    mapper-locations: classpath:mapper/*.xml
